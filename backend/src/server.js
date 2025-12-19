@@ -8,6 +8,7 @@ import { inngest,functions } from "../lib/inngest.js";
 import {clerkMiddleware} from "@clerk/express";
 import { protectRoute } from "../middleware/protectRoute.js";
 import chatRoutes from "../routes/chatRoutes.js"
+import sessionRoutes from "../routes/sessionRoutes.js"
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.get("/health",(req,res)=>{
 })  
 
 app.use("/api/chat",chatRoutes);
+app.use("/api/session",sessionRoutes);
 
 if(ENV.NODE_ENV==="production"){
     app.use(express.static(path.join(__dirname,"../frontend/dist")))
